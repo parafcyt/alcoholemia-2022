@@ -1,6 +1,11 @@
 --create database alcoholemia;
 
 ------------------------------------------------------------------------------------------ TABLAS
+CREATE TABLE TipoUsuario (
+	Id SERIAL PRIMARY KEY,
+	Tipo VARCHAR NOT NULL --administrador,administrativo,examinador
+);
+
 
 CREATE TABLE Usuario (
 	Id SERIAL PRIMARY KEY,
@@ -8,8 +13,10 @@ CREATE TABLE Usuario (
 	NombreReal VARCHAR NOT NULL,
 	NombreUsuario VARCHAR NOT NULL, --nombre para login
 	Contrasenia VARCHAR NOT NULL,
-	TipoUsuario VARCHAR NOT NULL	--administrador,administrativo,examinador
+	IdTipoUsuario INT REFERENCES TipoUsuario(Id)	
 );
+
+
 
 CREATE TABLE Conductor (
 	DNI VARCHAR PRIMARY KEY,

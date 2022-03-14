@@ -1,24 +1,18 @@
 -- FUNCIONES USUARIO
 
--- Id SERIAL PRIMARY KEY,
--- 	Activo BOOLEAN NOT NULL,
--- 	NombreReal VARCHAR NOT NULL,
--- 	NombreUsuario VARCHAR NOT NULL, --nombre para login
--- 	Contrasenia VARCHAR NOT NULL,
--- 	TipoUsuario VARCHAR NOT NULL	--administrador,administrativo,examinador
 
 CREATE OR REPLACE FUNCTION AltaUsuario(
 	pNombreReal VARCHAR, 
 	pNombreUsuario VARCHAR, 
 	pContrasenia VARCHAR, 
-	pTipoUsuario VARCHAR
+	pIdTipoUsuario INT
 ) 
 RETURNS SETOF Usuario AS
 $$
 DECLARE mId INT;
 BEGIN
-	INSERT INTO Usuario(Activo, NombreReal, NombreUsuario, Contrasenia, TipoUsuario) 
-	VALUES (TRUE,pNombreReal, pNombreUsuario, pContrasenia, pTipoUsuario) 
+	INSERT INTO Usuario(Activo, NombreReal, NombreUsuario, Contrasenia, IdTipoUsuario) 
+	VALUES (TRUE,pNombreReal, pNombreUsuario, pContrasenia, pIdTipoUsuario) 
 	RETURNING Id INTO mId;
 	
 	RETURN QUERY SELECT * FROM Usuario WHERE Id = mId;
@@ -51,7 +45,7 @@ CREATE OR REPLACE FUNCTION ModificarUsuario(
 	pNombreReal VARCHAR, 
 	pNombreUsuario VARCHAR, 
 	pContrasenia VARCHAR, 
-	pTipoUsuario VARCHAR
+	pIdTipoUsuario INT
 ) 
 RETURNS SETOF Usuario AS
 $$
@@ -62,7 +56,7 @@ BEGIN
 		NombreReal = pNombreReal, 
 		NombreUsuario = pNombreUsuario, 
 		Contrasenia = pContrasenia, 
-		TipoUsuario = pTipoUsuario 
+		IdTipoUsuario = pIdTipoUsuario 
 	WHERE 
 		Id = pId 
 	RETURNING Id INTO mId;
