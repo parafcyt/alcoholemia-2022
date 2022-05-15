@@ -1,89 +1,89 @@
 --create database alcoholemia;
 
 ------------------------------------------------------------------------------------------ TABLAS
+
 CREATE TABLE TipoUsuario (
-	Id SERIAL PRIMARY KEY,
-	Tipo VARCHAR NOT NULL --administrador,administrativo,examinador
+	id SERIAL PRIMARY KEY,
+	tipo VARCHAR NOT NULL UNIQUE--administrador,administrativo,examinador
 );
 
 
 CREATE TABLE Usuario (
-	Id SERIAL PRIMARY KEY,
-	Activo BOOLEAN NOT NULL,
-	NombreReal VARCHAR NOT NULL,
-	NombreUsuario VARCHAR NOT NULL, --nombre para login
-	Contrasenia VARCHAR NOT NULL,
-	IdTipoUsuario INT REFERENCES TipoUsuario(Id)	
+	nombreUsuario VARCHAR PRIMARY KEY,
+	activo BOOLEAN NOT NULL,
+	nombreReal VARCHAR NOT NULL,
+	contrasenia VARCHAR NOT NULL,
+	tipoUsuarioId INT REFERENCES TipoUsuario(Id)	
 );
 
 
 
 CREATE TABLE Conductor (
 	DNI VARCHAR PRIMARY KEY,
-	Nombre VARCHAR NOT NULL,
-	Apellido VARCHAR NOT NULL
+	nombre VARCHAR NOT NULL,
+	apellido VARCHAR NOT NULL
 );
 
 CREATE TABLE Dominio (
-	Patente VARCHAR PRIMARY KEY,
-	Descripcion VARCHAR NOT NULL
+	patente VARCHAR PRIMARY KEY,
+	descripcion VARCHAR NOT NULL
 );
 
 CREATE TABLE Examinador (
-	Id SERIAL PRIMARY KEY,
-	NombreReal VARCHAR NOT NULL,
-	Activo BOOLEAN NULL,
-	IdUsuario INT REFERENCES Usuario(Id)
+	id SERIAL PRIMARY KEY,
+	activo BOOLEAN,
+	usuarioNombre VARCHAR UNIQUE REFERENCES Usuario(nombreUsuario) 
 );
 
 CREATE TABLE Equipo (
-	Id SERIAL PRIMARY KEY,  --autoincremental
-	Nombre VARCHAR NOT NULL, --el impreso en el equipo
-	Activo BOOLEAN DEFAULT FALSE, --activo o no pra el uso
-	NroActual INT --numero de muestra actual
+	id SERIAL PRIMARY KEY,  --autoincremental
+	nombre VARCHAR UNIQUE NOT NULL, --el impreso en el equipo
+	activo BOOLEAN, --activo o no pra el uso
+	nroActual INT --numero de muestra actual
 );
 
 CREATE TABLE PeriodoUtilizable (
-	Id SERIAL PRIMARY KEY,
-	Activo BOOLEAN NULL, --el vigente o no
-	FechaInicio DATE NOT NULL,
-	FechaVencimiento DATE NOT NULL,
-	NroIngreso INT NOT NULL, --1er numero a usar 
-	IdEquipo INT REFERENCES Equipo(Id)
+	id SERIAL PRIMARY KEY,
+	activo BOOLEAN, --el vigente o no
+	fechaInicio DATE NOT NULL,
+	fechaVencimiento DATE NOT NULL,
+	nroIngreso INT NOT NULL, --1er numero a usar 
+	equipoId INT REFERENCES Equipo(Id)
 );
 
 CREATE TABLE Prestamo (
-	Id SERIAL PRIMARY KEY,
-	Activo BOOLEAN NULL, --prestado o no
-	FechaPrestamo DATE NOT NULL,
-	HoraPrestamo TIME NOT NULL,
-	NroInicial INT NOT NULL, --1er numero a usar ?
-	FechaDevolucion DATE,
-	HoraDevolucion TIME,
-	NroDevolucion INT, --ultimo numero usado ?
-	IdExaminador INT REFERENCES Examinador(Id),
-	IdEquipo INT REFERENCES Equipo(Id)
+	id SERIAL PRIMARY KEY,
+	activo BOOLEAN, --prestado o no
+	fechaPrestamo DATE NOT NULL,
+	horaPrestamo TIME NOT NULL,
+	nroInicial INT NOT NULL, --1er numero a usar ?
+	fechaDevolucion DATE,
+	horaDevolucion TIME,
+	nroDevolucion INT, --ultimo numero usado ?
+	examinadorId INT REFERENCES Examinador(Id),
+	equipoId INT REFERENCES Equipo(Id)
 );
 
 CREATE TABLE Prueba (
-	Id SERIAL PRIMARY KEY,
-	Fecha DATE NOT NULL,
-	Hora TIME NOT NULL,
-	NroMuestra INT NOT NULL, --???
-	Resultado FLOAT NOT NULL check(resultado >= 0.0),
-	NroActa INT,
-	NroRetencion INT,
-	Verificado BOOLEAN DEFAULT FALSE,
-	Rechazado BOOLEAN DEFAULT FALSE,
-	DescripcionRechazo VARCHAR,
-	IdVerificador INT REFERENCES Usuario(Id),
-	DNIConductor VARCHAR REFERENCES Conductor(DNI),
-	IdDominio VARCHAR REFERENCES Dominio(Patente),
-	IdPrestamo INT REFERENCES Prestamo(Id)
+	id SERIAL PRIMARY KEY,
+	fecha DATE NOT NULL,
+	hora TIME NOT NULL,
+	nroMuestra INT NOT NULL, --???
+	resultado FLOAT NOT NULL check(resultado >= 0.0),
+	nroActa INT,
+	nroRetencion INT,
+	verificado BOOLEAN,
+	rechazado BOOLEAN,
+	descripcionRechazo VARCHAR,
+	verificadorNombre VARCHAR REFERENCES Usuario(nombreUsuario),
+	conductorDNI VARCHAR REFERENCES Conductor(DNI),
+	dominioId VARCHAR REFERENCES Dominio(Patente),
+	prestamoId INT REFERENCES Prestamo(Id)
 );
 
 
 ---------------------------------------------------------------- TABLA PARA ADMINISTRAR SESIONES ACTIVAS SW
+/*
 CREATE TABLE Sesion (
 	"sid" VARCHAR NOT NULL COLLATE "default",
 	"sess" json NOT NULL,
@@ -91,3 +91,4 @@ CREATE TABLE Sesion (
 )
 WITH (OIDS=FALSE);
 ALTER TABLE Sesion ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+*/
