@@ -1,0 +1,1 @@
+Interfaces que representan a las tablas y/o consultas de la bbdd

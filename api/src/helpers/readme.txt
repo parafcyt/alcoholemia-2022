@@ -1,0 +1,1 @@
+Funciones, clases, manejo de errores, utiles para reutilizar en toda la aplicacion

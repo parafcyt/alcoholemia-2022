@@ -1,0 +1,1 @@
+Configuraciones para conectarse a la bbdd
