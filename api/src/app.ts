@@ -5,7 +5,6 @@ import cors from "cors";
 //import { bbddCliente } from "./bbdd/bbddCliente";
 //import { Pool } from "pg";
 
-import pruebaRutas from "./rutas/prueba";
 import usuarioRutas from "./rutas/usuarios";
 
 
@@ -25,7 +24,6 @@ app.get('/api',(req,res)=>{
 });
 
 //es /api/prueba
-app.use('/api',pruebaRutas);
 app.use('/api',usuarioRutas);
 
 
