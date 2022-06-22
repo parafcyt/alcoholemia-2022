@@ -28,7 +28,7 @@ BEGIN
 	SET activo=pActivo
 	WHERE usuarioNombre=pUsuarioNombre;
 	
-	RETURN QUERY SELECT * FROM Examinador WHERE id = pId;
+	RETURN QUERY SELECT * FROM Examinador WHERE usuarioNombre = pUsuarioNombre;
 END;
 $$
 LANGUAGE 'plpgsql';

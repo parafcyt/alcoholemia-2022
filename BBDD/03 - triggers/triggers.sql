@@ -98,7 +98,7 @@ RETURNS TRIGGER AS
 $$
 BEGIN	
 	IF (NEW.activo=false) THEN
-		PERFORM ModificarExaminador(NEW.nombreusuario, false);
+		PERFORM ModificacionExaminador(NEW.nombreusuario, false);
 	END IF;
 	
 	RETURN NEW;
@@ -124,9 +124,9 @@ BEGIN
 	IF (NEW.tipoUsuarioId=3)THEN
 		SELECT id INTO mId FROM Examinador WHERE usuarioNombre=NEW.nombreUsuario;
 			IF (mId IS NOT NULL) THEN
-				PERFORM ModificarUsuario(mId,TRUE);
+				PERFORM ModificacionExaminador(NEW.nombreusuario, TRUE);
 			ELSE
-				PERFORM AltaExaminador (NEW.nombreUsuario); 
+				PERFORM AltaExaminador(NEW.nombreUsuario); 
 			END IF;
 	END IF;
 	

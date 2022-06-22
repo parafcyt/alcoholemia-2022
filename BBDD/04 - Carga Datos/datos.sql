@@ -73,23 +73,23 @@ insert into Prestamo (activo, fechaPrestamo, horaPrestamo, nroInicial, fechadevo
 
 --prueba 1
 insert into Prueba (fecha, hora, nroMuestra, resultado, nroActa, nroRetencion, conductorDNI, dominioId, prestamoId) values 
-('2022-05-15', '12:50', 299, 0.5, 10, null, '8927785576', 'wbsde93422c959092', 7);
+('2022-05-15', '12:50', 299, 0.5, 10, null, '8927785576', 'wbsde93422c959092', 1);
 
 
 --prueba 2
 insert into Prueba (fecha, hora, nroMuestra, resultado, nroActa, nroRetencion, conductorDNI, dominioId, prestamoId) values 
-('2022-05-15', '3:16', 796, 1.0, 14, 5, '7719134508', 'jn1cv6ekxem902606', 8);
+('2022-05-15', '3:16', 796, 1.0, 14, 5, '7719134508', 'jn1cv6ekxem902606', 2);
 
 
 --prueba 3
 insert into Prueba (fecha, hora, nroMuestra, resultado, nroActa, nroRetencion, conductorDNI, dominioId, prestamoId) values 
-('2022-05-15', '22:06', 198, 0.6, 20, 10, '7719134508', 'wba3b1c50f5078825', 9);
+('2022-05-15', '22:06', 198, 0.6, 20, 10, '7719134508', 'wba3b1c50f5078825', 3);
 
 
 --prueba 4
 insert into Prueba (fecha, hora, nroMuestra, resultado, nroActa, nroRetencion, conductorDNI, dominioId, prestamoId) values 
-('2021-05-27', '14:06', 100, 0.5, 22, null, '1581170920', 'wba3b1c50f5078825', 9);
+('2021-05-27', '14:06', 100, 0.5, 22, null, '1581170920', 'wba3b1c50f5078825', 3);
 
 --prueba 5
 insert into Prueba (fecha, hora, nroMuestra, resultado, nroActa, nroRetencion, conductorDNI, dominioId, prestamoId) values 
-('2021-05-27', '15:10', 101, 0, null, null, 'f65348954', 'wba3b1c50f5078825', 9);
+('2021-05-27', '15:10', 101, 0, null, null, 'f65348954', 'wba3b1c50f5078825', 3);
