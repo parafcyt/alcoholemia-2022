@@ -1,10 +1,10 @@
 import { Pool } from "pg";
-import { conexionBbdd } from "../configuracion/database";
+import { clienteConfig } from "../configuracion/database";
 
 //hago el cliente de bbdd
 
 export function bbddCliente() :Pool {
-    const pool=new Pool(conexionBbdd);
+    const pool=new Pool(clienteConfig);
 
     pool.on('connect',()=>{
         console.log('Conectado a postgres');

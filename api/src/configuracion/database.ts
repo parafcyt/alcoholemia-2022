@@ -1,7 +1,7 @@
 import { ClientConfig } from "pg";
 
 //datos para conectarme a postgres
-export const conexionBbdd : ClientConfig ={
+export const clienteConfig : ClientConfig ={
     host: 'localhost',
     database: 'alcoholemia',
     password:'alexis',
