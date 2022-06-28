@@ -7,9 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from "./shared/material/material.module";
 
+import { InicioComponent } from './componentes/inicio/inicio.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InicioComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
