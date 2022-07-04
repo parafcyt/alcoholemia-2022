@@ -16,7 +16,7 @@ app.set("puerto",3000);
 //middlewares
 app.use(morgan("dev"));
 app.use(express.json());
-//app.use(cors({origin:'http://localhost:4200',credentials:true}));
+app.use(cors({origin:'http://localhost:4200',credentials:true}));
 
 //solo/api
 app.get('/api',(req,res)=>{
