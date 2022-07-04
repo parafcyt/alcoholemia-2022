@@ -29,7 +29,7 @@ export async function DeleteUsuario(req: Request, res: Response){
 
         const respuesta: QueryResult<Usuario> = await clienteBbdd.query(consulta, nombreUsuarioParam);
         
-        res.status(200).send(respuesta.rows);
+        res.status(200).send(respuesta.rows[0]);
     } 
     
     catch (error) {
@@ -52,7 +52,7 @@ export async function UpdateUsuario(req: Request, res: Response){
 
         const respuesta: QueryResult<Usuario> = await clienteBbdd.query(consulta, usuarioParam);
         
-        res.status(200).send(respuesta.rows);
+        res.status(200).send(respuesta.rows[0]);
     } 
     
     catch (error) {
